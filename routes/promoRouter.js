@@ -24,7 +24,7 @@ promoRouter.route('/')
         promotions.find({},function (err,promotion) {
         
           if(err) throw err;
-          res.json(dish);
+          res.json(promotion);
         
         });
 
@@ -94,12 +94,20 @@ promoRouter.route('/:promoId')
         },function  (err,promotion) {
           
             if(err) throw err;
-            res.json(promotions);
+            res.json(promotion);
         });
 })
 
 .delete(function(req, res, next){
-        res.end('Deleting promo: ' + req.params.promoId);
+        // res.end('Deleting promo: ' + req.params.promoId);
+
+             promotions.findByIdAndRemove(req.params.promoId, function (err, resp) {  
+
+          if (err) throw err;
+        
+          res.json(resp);
+    });
+
 });
 
 
