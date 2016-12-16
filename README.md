@@ -14,9 +14,7 @@
 
 * Open terminal in the current folder and type node app.js 
 
-* This will start a server. 
-
-* Go to http://localhost:3001/#/
+* This will start a server at http://localhost:3001
 
 ### Package Manager Used 
 
