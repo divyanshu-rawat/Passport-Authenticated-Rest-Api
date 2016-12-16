@@ -31,7 +31,25 @@ promoRouter.route('/')
 })
 
 .post(function(req, res, next){
-    res.end('Will add the promo:: ' + req.body.name + ' with details: ' + req.body.description);    
+
+    // res.end('Will add the promo:: ' + req.body.name + ' with details: ' + req.body.description);  
+
+
+    promotions.create(req.body,function (err,promotion) {
+      
+        if(err) throw err;
+        console.log('promotions Created !!');
+
+        var id = promotion._id;
+
+
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
+        res.end('Added the promotion with id: ' + id);
+
+    });
+
 })
 
 .delete(function(req, res, next){
