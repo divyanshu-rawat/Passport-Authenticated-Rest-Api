@@ -16,6 +16,10 @@
 
 * This will start a server at http://localhost:3001
 
+### DB Used (MongoDB)
+
+* MLab's MongoDB hosting platform is the fastest growing cloud Database-as-a-Service in the world. Get started with a free database and expert support.
+
 ### Package Manager Used 
 
 * NPM is the default package manager for the JavaScript runtime environment Node.js.
