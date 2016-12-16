@@ -3,6 +3,9 @@
 var express = require("express");
 var bodyParser = require('body-parser');
 
+var mongoose = require('mongoose');
+var promotions = require('../models/promotions');
+
 var promoRouter = express.Router();
 
 promoRouter.use(bodyParser.json());
@@ -10,13 +13,21 @@ promoRouter.use(bodyParser.json());
 
 promoRouter.route('/')
 
-.all(function (req,res,next) {
-	res.writeHead(200,{'content-type':'text/plain'});
-	next();
-})
+// .all(function (req,res,next) {
+// 	res.writeHead(200,{'content-type':'text/plain'});
+// 	next();
+// })
 
 .get(function(req,res,next){
-        res.end('Will send all the promos to you !');
+        // res.end('Will send all the promos to you !');
+
+        promotions.find({},function (err,promotion) {
+        
+          if(err) throw err;
+          res.json(dish);
+        
+        });
+
 })
 
 .post(function(req, res, next){
