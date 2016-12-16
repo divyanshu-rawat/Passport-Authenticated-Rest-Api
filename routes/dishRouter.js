@@ -159,6 +159,22 @@ dishRouter.route('/:dishId/comments/:commentId')
 })
 
 
+.put(function (req, res, next) {
+    // We delete the existing commment and insert the updated
+    // comment as a new comment
+    Dishes.findById(req.params.dishId, function (err, dish) {
+        if (err) throw err;
+        dish.comments.id(req.params.commentId).remove();
+
+        dish.comments.push(req.body);
+        
+        dish.save(function (err, dish) {
+            if (err) throw err;
+            console.log('Updated Comments!');
+            res.json(dish);
+        });
+    });
+})
 
 
 
