@@ -149,4 +149,22 @@ dishRouter.route('/:dishId/comments')
     });
 });
 
+dishRouter.route('/:dishId/comments/:commentId')
+
+.get(function (req, res, next) {
+    Dishes.findById(req.params.dishId, function (err, dish) {
+        if (err) throw err;
+        res.json(dish.comments.id(req.params.commentId));
+    });
+})
+
+
+
+
+
+
+
+
+
+
 module.exports = dishRouter;
