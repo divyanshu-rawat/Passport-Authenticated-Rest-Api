@@ -118,4 +118,19 @@ dishRouter.route('/:dishId/comments')
     });
 })
 
+
+.post(function (req, res, next) {
+    Dishes.findById(req.params.dishId, function (err, dish) {
+        if (err) throw err;
+        dish.comments.push(req.body);
+        dish.save(function (err, dish) {
+            if (err) throw err;
+            console.log('Updated Comments!');
+            res.json(dish);
+        });
+    });
+})
+
+
+
 module.exports = dishRouter;
