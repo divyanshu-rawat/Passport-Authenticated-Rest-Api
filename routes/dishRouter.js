@@ -2,6 +2,8 @@
 
 var express = require("express");
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var Dishes = require('../models/dishes');
 
 var dishRouter = express.Router();
 
@@ -10,14 +12,24 @@ dishRouter.use(bodyParser.json());
 
 dishRouter.route('/')
 
-.all(function (req,res,next) {
-	res.writeHead(200,{'content-type':'text/plain'});
-	next();
-})
+// .all(function (req,res,next) {
+// 	res.writeHead(200,{'content-type':'text/plain'});
+// 	next();
+// })
 
 .get(function(req,res,next){
-        res.end('Will send all the dishes to you!');
+        // res.end('Will send all the dishes to you!');
+
+        Dishes.find({},function (err,dish) {
+        
+          if(err) throw err;
+          res.json(dish);
+        
+        });
 })
+
+
+
 
 .post(function(req, res, next){
     res.end('Will add the dish: ' + req.body.name + ' with details: ' + req.body.description);    
