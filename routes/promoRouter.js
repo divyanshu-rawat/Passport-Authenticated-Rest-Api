@@ -72,7 +72,7 @@ promoRouter.route('/:promoId')
 .get(function(req,res,next){
         // res.end('Will send details of the promo: ' + req.params.promoId +' to you!');
 
-          promotions.findById(req.params.dishId,function(err,promotion){
+          promotions.findById(req.params.promoId,function(err,promotion){
 
           if(err) throw err;
           res.json(promotion);
@@ -81,8 +81,21 @@ promoRouter.route('/:promoId')
 })
 
 .put(function(req, res, next){
-        res.write('Updating the promo: ' + req.params.promoId + '\n');
-    	  res.end('Will update the promo: ' + req.body.name + ' with details: ' + req.body.description);
+       //  res.write('Updating the promo: ' + req.params.promoId + '\n');
+    	  // res.end('Will update the promo: ' + req.body.name + ' with details: ' + req.body.description);
+
+        promotions.findByIdAndUpdate(req.params.promoId,{
+
+          $set:req.body
+
+        },
+        {
+          new:true
+        },function  (err,promotion) {
+          
+            if(err) throw err;
+            res.json(promotions);
+        });
 })
 
 .delete(function(req, res, next){
