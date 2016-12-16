@@ -56,7 +56,7 @@ promoRouter.route('/')
         // res.end('Deleting all promos');
 
               promotions.remove({}, function (err, resp) {
-                
+
         if (err) throw err;
         res.json(resp);
     });
@@ -64,13 +64,20 @@ promoRouter.route('/')
 
 
 promoRouter.route('/:promoId')
-.all(function(req,res,next) {
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      next();
-})
+// .all(function(req,res,next) {
+//       res.writeHead(200, { 'Content-Type': 'text/plain' });
+//       next();
+// })
 
 .get(function(req,res,next){
-        res.end('Will send details of the promo: ' + req.params.promoId +' to you!');
+        // res.end('Will send details of the promo: ' + req.params.promoId +' to you!');
+
+          promotions.findById(req.params.dishId,function(err,promotion){
+
+          if(err) throw err;
+          res.json(promotion);
+
+        });
 })
 
 .put(function(req, res, next){
