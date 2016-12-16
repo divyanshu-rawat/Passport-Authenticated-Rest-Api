@@ -42,7 +42,7 @@ dishRouter.route('/')
 
         var id = dish._id;
 
-      
+
         res.writeHead(200, {
             'Content-Type': 'text/plain'
         });
@@ -53,7 +53,12 @@ dishRouter.route('/')
 })
 
 .delete(function(req, res, next){
-        res.end('Deleting all dishes');
+        // res.end('Deleting all dishes');
+
+          Dishes.remove({}, function (err, resp) {
+        if (err) throw err;
+        res.json(resp);
+    });
 });
 
 
