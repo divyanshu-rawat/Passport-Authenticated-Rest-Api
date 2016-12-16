@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 // code to connect to the MongoDB server !
 var mongoose = require('mongoose');
 
-var url = 'mongodb://localhost:27017/conFusion';
+var url = 'mongodb://div:123@ds031223.mlab.com:31223/divyanshu';
 mongoose.connect(url);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -21,6 +21,7 @@ db.once('open', function () {
 // 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var dishRouter = require('./routes/dishRouter');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/dishes',dishRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
