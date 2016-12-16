@@ -176,7 +176,15 @@ dishRouter.route('/:dishId/comments/:commentId')
     });
 })
 
-
+.delete(function (req, res, next) {
+    Dishes.findById(req.params.dishId, function (err, dish) {
+        dish.comments.id(req.params.commentId).remove();
+        dish.save(function (err, resp) {
+            if (err) throw err;
+            res.json(resp);
+        });
+    });
+});
 
 
 
