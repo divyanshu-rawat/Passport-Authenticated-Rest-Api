@@ -1,6 +1,4 @@
 
-
-
 ### Description 
 
 *  Developed a full-fledged REST API server with Express, MongoDB and Mongoose
@@ -20,11 +18,11 @@
 
 * MLab's MongoDB hosting platform is the fastest growing cloud Database-as-a-Service in the world. Get started with a free database and expert support.
 
-### Package Manager Used 
+### Package Manager Used (NPM)
 
 * NPM is the default package manager for the JavaScript runtime environment Node.js.
 
-### Package.json 
+### Package.json (dependencies)
 
 "dependencies": {
     "body-parser": "~1.15.1",
@@ -38,12 +36,16 @@
     "mongoose": "~4.7.2"
   }
 
-### For Testing 
+### For Testing (Postman)
 
-* Postman can be used !
+* Postman extension can be used for testing !
 * Supercharge your API workflow with Postman! Build, test, and document your APIs faster.
+* You can now fire up postman and then perform several operations on the REST API.
 
-### Sample Data for testing is present in db.json file !!  
+
+### Sample Data (db.json)
+
+*  You can use the data for all the dishes,promotions and leadership provided in the db.json file .
 
 ### Example 
 
