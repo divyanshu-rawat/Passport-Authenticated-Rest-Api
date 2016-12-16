@@ -100,7 +100,22 @@ dishRouter.route('/:dishId')
 
 .delete(function(req, res, next){
         // res.end('Deleting dish: ' + req.params.dishId);
+         Dishes.findByIdAndRemove(req.params.dishId, function (err, resp) {  
+
+          if (err) throw err;
+        
+          res.json(resp);
+    });
+
 });
 
+dishRouter.route('/:dishId/comments')
+
+.get(function (req, res, next) {
+    Dishes.findById(req.params.dishId, function (err, dish) {
+        if (err) throw err;
+        res.json(dish.comments);
+    });
+})
 
 module.exports = dishRouter;
