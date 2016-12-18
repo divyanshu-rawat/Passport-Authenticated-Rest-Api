@@ -56,12 +56,8 @@
 
 * GET Request to URL localhost:3001/dishes/
 
-![alt tag](https://github.com/divyanshu-rawat/Rest_api-Node.js/blob/master/snapshots/postman_getrequest_dishes.png)
+![alt tag](https://github.com/divyanshu-rawat/Rest_api-Node.js/blob/master/snapshots/token.png)
 
-
-* GET Request to URL localhost:3001/promotions
-
-![alt tag](https://github.com/divyanshu-rawat/Rest_api-Node.js/blob/master/snapshots/postman_request_promotions.png)
 
 
 
