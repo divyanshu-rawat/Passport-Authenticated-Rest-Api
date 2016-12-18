@@ -1,8 +1,8 @@
 
 ### Description 
 
-*  Developed a full-fledged REST API server with Express, MongoDB and Mongoose
-*  Serve up various REST API end points together with interaction with the MongoDB server.
+* Used JSON web tokens for token-based user authentication
+* Used Passport module together with passport-local and passport-local-mongoose for setting up local authentication within server.
 
 ### Installation Instructions :grey_exclamation:
 
@@ -23,8 +23,8 @@
 * NPM is the default package manager for the JavaScript runtime environment Node.js.
 
 ### Package.json (dependencies)
-
-"dependencies": {
+ 
+ "dependencies": {
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
@@ -33,7 +33,10 @@
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0",
     "mongoose-currency": "~0.2.0",
-    "mongoose": "~4.7.2"
+    "mongoose": "~4.7.2",
+    "passport-local": "~1.0.0",
+    "passport": "~0.3.2",
+    "passport-local-mongoose": "~4.0.0"
   }
 
 ### For Testing (Postman)
