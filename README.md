@@ -56,7 +56,7 @@
 
 * GET Request to URL localhost:3001/dishes/
 
-![alt tag](https://github.com/divyanshu-rawat/Rest_api-Node.js/blob/master/snapshots/token.png)
+![alt tag](https://github.com/divyanshu-rawat/Passport_authentication-Node.js/blob/master/snapshots/token.png)
 
 
 
