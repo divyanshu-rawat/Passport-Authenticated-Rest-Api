@@ -17,7 +17,7 @@ dishRouter.route('/')
 // 	next();
 // })
 
-.get(function(req,res,next){
+.get(Verify.verifyOrdinaryUser,function(req,res,next){
         // res.end('Will send all the dishes to you!');
 
         Dishes.find({},function (err,dish) {
@@ -31,7 +31,7 @@ dishRouter.route('/')
 
 
 
-.post(function(req, res, next){
+.post(Verify.verifyOrdinaryUser,function(req, res, next){
 
     // res.end('Will add the dish: ' + req.body.name + ' with details: ' + req.body.description);    
 
@@ -52,7 +52,7 @@ dishRouter.route('/')
 
 })
 
-.delete(function(req, res, next){
+.delete(Verify.verifyOrdinaryUser,function(req, res, next){
         // res.end('Deleting all dishes');
 
           Dishes.remove({}, function (err, resp) {
