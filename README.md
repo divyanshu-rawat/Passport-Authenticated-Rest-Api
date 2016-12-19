@@ -52,12 +52,18 @@
 
 ### Example 
 
-### Images corresponding to 
+* POST Request to URL localhost:3001/users/register  (For user registration !)
 
-* GET Request to URL localhost:3001/dishes/
+![alt tag](https://github.com/divyanshu-rawat/Passport_authentication-Node.js/blob/master/snapshots/user_reg.png)
+
+* POST Request to URL localhost:3001/users/login     (For user login !)
+
+![alt tag](https://github.com/divyanshu-rawat/Passport_authentication-Node.js/blob/master/snapshots/user_login.png)
+
+
+* GET Request to URL localhost:3001/dishes/          (User Authenticated !)
 
 ![alt tag](https://github.com/divyanshu-rawat/Passport_authentication-Node.js/blob/master/snapshots/token.png)
-
 
 
 
