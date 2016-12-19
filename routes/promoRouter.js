@@ -18,7 +18,7 @@ promoRouter.route('/')
 // 	next();
 // })
 
-.get(function(req,res,next){
+.get(Verify.verifyOrdinaryUser,function(req,res,next){
         // res.end('Will send all the promos to you !');
 
         promotions.find({},function (err,promotion) {
@@ -30,7 +30,7 @@ promoRouter.route('/')
 
 })
 
-.post(function(req, res, next){
+.post(Verify.verifyOrdinaryUser,function(req, res, next){
 
     // res.end('Will add the promo:: ' + req.body.name + ' with details: ' + req.body.description);  
 
@@ -52,7 +52,7 @@ promoRouter.route('/')
 
 })
 
-.delete(function(req, res, next){
+.delete(Verify.verifyOrdinaryUser,function(req, res, next){
         // res.end('Deleting all promos');
 
               promotions.remove({}, function (err, resp) {
@@ -69,7 +69,7 @@ promoRouter.route('/:promoId')
 //       next();
 // })
 
-.get(function(req,res,next){
+.get(Verify.verifyOrdinaryUser,function(req,res,next){
         // res.end('Will send details of the promo: ' + req.params.promoId +' to you!');
 
           promotions.findById(req.params.promoId,function(err,promotion){
@@ -80,7 +80,7 @@ promoRouter.route('/:promoId')
         });
 })
 
-.put(function(req, res, next){
+.put(Verify.verifyOrdinaryUser,function(req, res, next){
        //  res.write('Updating the promo: ' + req.params.promoId + '\n');
     	  // res.end('Will update the promo: ' + req.body.name + ' with details: ' + req.body.description);
 
@@ -98,7 +98,7 @@ promoRouter.route('/:promoId')
         });
 })
 
-.delete(function(req, res, next){
+.delete(Verify.verifyOrdinaryUser,function(req, res, next){
         // res.end('Deleting promo: ' + req.params.promoId);
 
              promotions.findByIdAndRemove(req.params.promoId, function (err, resp) {  
