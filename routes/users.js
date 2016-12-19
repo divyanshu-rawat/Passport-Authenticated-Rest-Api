@@ -6,7 +6,7 @@ var Verify    = require('./verify');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('Welcome !!!');
 });
 
 router.post('/register', function(req, res) {
@@ -45,7 +45,7 @@ router.post('/login', function(req, res, next) {
         token: token
       });
     });
-    
+
   })(req,res,next);
 });
 
