@@ -31,28 +31,27 @@ dishRouter.route('/')
 
 
 
-.post(Verify.verifyOrdinaryUser,function(req, res, next){
+.post(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
 
-    // res.end('Will add the dish: ' + req.body.name + ' with details: ' + req.body.description);    
+             Dishes.create(req.body,function (err,dish) {
+              
+                if(err) throw err;
+                console.log('Dish Created !!');
 
-    Dishes.create(req.body,function (err,dish) {
-      
-        if(err) throw err;
-        console.log('Dish Created !!');
-
-        var id = dish._id;
+                var id = dish._id;
 
 
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
-        res.end('Added the dish with id: ' + id);
+                res.writeHead(200, {
+                    'Content-Type': 'text/plain'
+                });
+                res.end('Added the dish with id: ' + id);
 
-    });
+            });
+     
 
 })
 
-.delete(Verify.verifyOrdinaryUser,function(req, res, next){
+.delete(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
         // res.end('Deleting all dishes');
 
           Dishes.remove({}, function (err, resp) {
@@ -79,7 +78,7 @@ dishRouter.route('/:dishId')
         });
 })
 
-.put(Verify.verifyOrdinaryUser,function(req, res, next){
+.put(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
         // res.write('Updating the dish: ' + req.params.dishId + '\n');
     	  // res.end('Will update the dish: ' + req.body.name + ' with details: ' + req.body.description);
 
@@ -98,7 +97,7 @@ dishRouter.route('/:dishId')
 
 })
 
-.delete(Verify.verifyOrdinaryUser,function(req, res, next){
+.delete(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
         // res.end('Deleting dish: ' + req.params.dishId);
          Dishes.findByIdAndRemove(req.params.dishId, function (err, resp) {  
 
@@ -119,7 +118,7 @@ dishRouter.route('/:dishId/comments')
 })
 
 
-.post(Verify.verifyOrdinaryUser,function (req, res, next) {
+.post(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function (req, res, next) {
     Dishes.findById(req.params.dishId, function (err, dish) {
         if (err) throw err;
         dish.comments.push(req.body);
@@ -131,7 +130,7 @@ dishRouter.route('/:dishId/comments')
     });
 })
 
-.delete(Verify.verifyOrdinaryUser,function (req, res, next) {
+.delete(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function (req, res, next) {
     Dishes.findById(req.params.dishId, function (err, dish) {
         if (err) throw err;
 
@@ -159,7 +158,7 @@ dishRouter.route('/:dishId/comments/:commentId')
 })
 
 
-.put(Verify.verifyOrdinaryUser,function (req, res, next) {
+.put(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function (req, res, next) {
     // We delete the existing commment and insert the updated
     // comment as a new comment
     Dishes.findById(req.params.dishId, function (err, dish) {
@@ -176,7 +175,7 @@ dishRouter.route('/:dishId/comments/:commentId')
     });
 })
 
-.delete(Verify.verifyOrdinaryUser,function (req, res, next) {
+.delete(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function (req, res, next) {
     Dishes.findById(req.params.dishId, function (err, dish) {
         dish.comments.id(req.params.commentId).remove();
         dish.save(function (err, resp) {

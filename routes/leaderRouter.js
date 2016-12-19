@@ -34,7 +34,7 @@ leaderRouter.route('/')
 
   })
 
-  .post(Verify.verifyOrdinaryUser,function(req, res, next){
+  .post(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
     // res.end('Will add the leader: ' + req.body.name + ' with details: ' + req.body.description);
 
 
@@ -56,7 +56,7 @@ leaderRouter.route('/')
 
   })
 
-  .delete(Verify.verifyOrdinaryUser,function(req, res, next){
+  .delete(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
     // res.end('Deleting all leaders');
 
      leaderships.remove({}, function (err, resp) {
@@ -89,7 +89,7 @@ leaderRouter.route('/')
 
   })
 
-  .put(Verify.verifyOrdinaryUser,function(req, res, next){
+  .put(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
 
     // res.write('Updating the leader: ' + req.params.leaderId + '\n');
     // res.end('Will update the leader: ' + req.body.name +
@@ -112,7 +112,7 @@ leaderRouter.route('/')
 
   })
 
-  .delete(Verify.verifyOrdinaryUser,function(req, res, next){
+  .delete(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
     // res.end('Deleting leader: ' + req.params.leaderId);
 
     leaderships.findByIdAndRemove(req.params.leaderId, function (err, resp) {  
