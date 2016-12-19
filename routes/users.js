@@ -45,6 +45,7 @@ router.post('/login', function(req, res, next) {
         token: token
       });
     });
+    
   })(req,res,next);
 });
 

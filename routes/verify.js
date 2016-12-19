@@ -21,7 +21,7 @@ exports.verifyOrdinaryUser = function (req, res, next) {
                 err.status = 401;
                 return next(err);
             } else {
-                // if everything is good, save to request for use in other routes
+                // if everything is good, save to request for use in other routes !
                 req.decoded = decoded;
                 next();
             }
