@@ -7,6 +7,8 @@ var
 var mongoose = require('mongoose');
 var leaderships = require('../models/leadership');
 
+var Verify = require('../routes/verify');
+
 var leaderRouter = express.Router();
 
 leaderRouter.use(bodyParser.json());

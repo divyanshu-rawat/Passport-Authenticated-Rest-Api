@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var promotions = require('../models/promotions');
 
+var Verify = require('../routes/verify');
+
 var promoRouter = express.Router();
 
 promoRouter.use(bodyParser.json());
