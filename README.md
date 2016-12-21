@@ -3,6 +3,7 @@
 
 * Used JSON web tokens for token-based user authentication
 * Used Passport module together with passport-local and passport-local-mongoose for setting up local authentication within server.
+* Use Mongoose population to cross-reference users within a comment.
 
 ### How it works !
 
