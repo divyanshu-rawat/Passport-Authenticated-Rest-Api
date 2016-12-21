@@ -12,20 +12,23 @@ dishRouter.use(bodyParser.json());
 
 dishRouter.route('/')
 
-// .all(function (req,res,next) {
-// 	res.writeHead(200,{'content-type':'text/plain'});
-// 	next();
-// })
-
 .get(Verify.verifyOrdinaryUser,function(req,res,next){
-        // res.end('Will send all the dishes to you!');
+       
+       Dishes.find({})
+        .populate('comments.postedBy')
+        .exec(function (err,dish) {
+            if(err) throw err;
 
-        Dishes.find({},function (err,dish) {
-        
-          if(err) throw err;
-          res.json(dish);
-        
+            res.json(dish);
         });
+
+        // without mongoose population !! returns a dish from DB.
+        // Dishes.find({},function (err,dish) {
+        
+        //   if(err) throw err;
+        //   res.json(dish);
+        
+        // });
 })
 
 
@@ -68,15 +71,19 @@ dishRouter.route('/:dishId')
 // })
 
 .get(Verify.verifyOrdinaryUser,function(req,res,next){
+    
         // res.end('Will send details of the dish: ' + req.params.dishId +' to you!');
 
-        Dishes.findById(req.params.dishId,function(err,dish){
+        Dishes.findById(req.params.dishId)
+        .populate('comments.postedBy')
+        .exec(function(err,dish){
 
           if(err) throw err;
           res.json(dish);
 
         });
 })
+
 
 .put(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
         // res.write('Updating the dish: ' + req.params.dishId + '\n');
