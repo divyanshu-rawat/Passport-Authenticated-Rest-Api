@@ -71,7 +71,7 @@ dishRouter.route('/:dishId')
 // })
 
 .get(Verify.verifyOrdinaryUser,function(req,res,next){
-    
+
         // res.end('Will send details of the dish: ' + req.params.dishId +' to you!');
 
         Dishes.findById(req.params.dishId)
@@ -126,9 +126,15 @@ dishRouter.route('/:dishId/comments')
 
 
 .post(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function (req, res, next) {
+    
     Dishes.findById(req.params.dishId, function (err, dish) {
+
         if (err) throw err;
+            
+        req.body.postedBy = req.decoded_doc._id; 
+
         dish.comments.push(req.body);
+    
         dish.save(function (err, dish) {
             if (err) throw err;
             console.log('Updated Comments!');
@@ -170,8 +176,10 @@ dishRouter.route('/:dishId/comments/:commentId')
     // comment as a new comment
     Dishes.findById(req.params.dishId, function (err, dish) {
         if (err) throw err;
+
         dish.comments.id(req.params.commentId).remove();
 
+        req.body.postedBy = req.decoded._doc._id;
         dish.comments.push(req.body);
         
         dish.save(function (err, dish) {
@@ -188,6 +196,7 @@ dishRouter.route('/:dishId/comments/:commentId')
 
         dish.comments.id(req.params.commentId).remove();
         
+
         dish.save(function (err, resp) {
 
             if (err) throw err;
