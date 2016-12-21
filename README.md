@@ -4,6 +4,13 @@
 * Used JSON web tokens for token-based user authentication
 * Used Passport module together with passport-local and passport-local-mongoose for setting up local authentication within server.
 
+### How it works !
+
+* Checks if a verified ordinary user also has admin privileges.
+* Allow an ordinary user to only perform GET operatioins
+* Only allows Admin to perform POST, PUT and DELETE operations
+* Only allows Admin to be able to GET all the registered users' information from the database
+
 ### Installation Instructions :grey_exclamation:
 
 * Clone or download the repo. into any fresh temporary folder.
