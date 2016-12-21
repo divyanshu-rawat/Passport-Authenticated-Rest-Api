@@ -19,10 +19,12 @@ var commentSchema = new Schema({
         type: String,
         required: true
     },
-    author:  {
-        type: String,
-        required: true
+    
+    postedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
+
 }, {
     timestamps: true
 });
