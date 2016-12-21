@@ -194,6 +194,13 @@ dishRouter.route('/:dishId/comments/:commentId')
 
     Dishes.findById(req.params.dishId, function (err, dish) {
 
+        if(dish.comments.id(req.params.commentId).postedBy != req.decoded._doc._id )
+        {
+            var  err = new error("You are not authorized to perform this operation  !");
+            err.status = 403;
+            return next(err);
+        }
+
         dish.comments.id(req.params.commentId).remove();
         
 
