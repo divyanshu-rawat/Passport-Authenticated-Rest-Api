@@ -131,7 +131,7 @@ dishRouter.route('/:dishId/comments')
 
         if (err) throw err;
             
-        req.body.postedBy = req.decoded_doc._id; 
+        req.body.postedBy = req.decoded._doc._id; 
 
         dish.comments.push(req.body);
     
