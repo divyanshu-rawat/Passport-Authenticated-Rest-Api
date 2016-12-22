@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('rest-server:server');
 var http = require('http');
-var https = requie('https');
+var https = require('https');
 var fs = require('fs');
 
 
@@ -42,8 +42,8 @@ server.on('listening', onListening);
 
 var options  ={
 
-  key: fs.readFileSync (__dirname + '/private.key');
-  cert: fs.readFileSync(__dirname + '/certificate.pem');
+  key: fs.readFileSync (__dirname + '/private.key'),
+  cert: fs.readFileSync(__dirname + '/certificate.pem')
 };
 
 var secureServer = https.createServer(options,app);
