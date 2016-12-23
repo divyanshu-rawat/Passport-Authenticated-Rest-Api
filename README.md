@@ -2,10 +2,12 @@
 ### Description 
 
 * Used JSON web tokens for token-based user authentication
-* Used Passport module together with passport-local and passport-local-mongoose for setting up local authentication within server.
+* Used Passport module together with passport-local and passport-local-mongoose for setting up local authentication within     server.
 * Use Mongoose population to cross-reference users within a comment.
 * Configured a secure server in Node using the core HTTPS module.
 * Generated the private key and public certificate and configure the HTTPS server.
+* Used an OAuth providers for authenticating users within your server.
+* Set up your server using Passport OAuth modules to enable user authentication using OAuth providers.
 
 ### How it works !
 
