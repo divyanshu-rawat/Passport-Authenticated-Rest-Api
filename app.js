@@ -12,6 +12,7 @@ var passport = require('passport');
 var config = require('./config');
 
 mongoose.connect(config.mongoUrl);
+console.log(config.mongoUrl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
