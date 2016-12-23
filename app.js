@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var authenticate = require('./authenticate');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
