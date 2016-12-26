@@ -22,13 +22,19 @@
 
 * Cd into that root folder you just cloned locally.
 
-* Open terminal in the current folder and type 
+* Open terminal in the current folder and to install all dependencies type 
+
+```javascript
+   npm install  
+```
+
+* Now typing 
 
  ```javascript
       npm start 
 ```
 
-* This will start a server !
+* will start a server !
 
 #### DB Used (MongoDB)
 
