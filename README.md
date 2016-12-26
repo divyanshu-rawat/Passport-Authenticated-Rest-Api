@@ -25,7 +25,7 @@
 * Open terminal in the current folder and type 
 
  ```javascript
-      npm start .
+      npm start 
 ```
 
 * This will start a server !
