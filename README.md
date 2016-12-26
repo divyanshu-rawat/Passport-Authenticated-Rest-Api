@@ -31,7 +31,7 @@
 * Now typing 
 
  ```javascript
-      npm start 
+   npm start 
 ```
 
 * will start a server !
