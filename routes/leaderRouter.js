@@ -23,11 +23,11 @@ leaderRouter.route('/')
   .get(Verify.verifyOrdinaryUser,function(req,res,next){
     // res.end('Will send all the leaders to you!');
 
-    leaderships.find({},function (err,promotion) {
+    leaderships.find({},function (err,leadership) {
         
           if(err) throw err;
 
-          res.json(promotion);
+          res.json(leadership);
         
         });
 

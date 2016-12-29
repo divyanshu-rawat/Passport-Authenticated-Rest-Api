@@ -4,123 +4,109 @@ var
   bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
-var leaderships = require('../models/leadership');
+var Favorites = require('../models/favorites');
 
 var Verify = require('../routes/verify');
 
-var leaderRouter = express.Router();
+var favoritesRouter = express.Router();
 
-leaderRouter.use(bodyParser.json());
+favoritesRouter.use(bodyParser.json());
 
-leaderRouter.route('/')
+favoritesRouter.route('/')
 
-  // .all(function(req,res,next) {
-  //   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  //   next();
-  // })
+  .all(Verify.verifyOrdinaryUser)
 
-  .get(Verify.verifyOrdinaryUser,function(req,res,next){
-    // res.end('Will send all the leaders to you!');
-
-    leaderships.find({},function (err,promotion) {
-        
-          if(err) throw err;
-
-          res.json(promotion);
-        
-        });
+  .get(function(req,res,next){
 
 
-  })
+       Favorites.find({'postedBy': req.decoded._doc._id})
 
-  .post(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
-    // res.end('Will add the leader: ' + req.body.name + ' with details: ' + req.body.description);
+        .populate('postedBy')
 
+        .populate('dishes')
 
-    leaderships.create(req.body,function (err,leadership) {
-      
-        if(err) throw err;
-        console.log('leadership Created !!');
+        .exec(function (err,favorites) {
 
-        var id = leadership._id;
+             if(err) throw err;
 
-
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
-
-        res.end('Added the leadership with id: ' + id);
-
-    });
-
-  })
-
-  .delete(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
-    // res.end('Deleting all leaders');
-
-     leaderships.remove({}, function (err, resp) {
-
-        if (err) throw err;
-        res.json(resp);
-    });
-
-
-  });
-
-  
-  leaderRouter.route('/:leaderId')
-  
-  // .all(function(req,res,next) {
-  //   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  //   next();
-  // })
-
-  .get(Verify.verifyOrdinaryUser,function(req,res,next){
-    // res.end('Will send details of the leader: ' + req.params.leaderId +' to you!');
-
-
-       leaderships.findById(req.params.leaderId,function(err,leadership){
-
-          if(err) throw err;
-          res.json(leadership);
-
-        });
-
-  })
-
-  .put(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
-
-    // res.write('Updating the leader: ' + req.params.leaderId + '\n');
-    // res.end('Will update the leader: ' + req.body.name +
-    //   ' with details: ' + req.body.description);
-
-
-     leaderships.findByIdAndUpdate(req.params.leaderId,{
-
-          $set:req.body
-
-        },
-        {
-          new:true
-        },function  (err,leadership) {
-          
-            if(err) throw err;
-            res.json(leadership);
-        });
+             res.json(favorites);
+           
+          });
 
 
   })
 
-  .delete(Verify.verifyOrdinaryUser,Verify.verifyAdmin,function(req, res, next){
-    // res.end('Deleting leader: ' + req.params.leaderId);
-
-    leaderships.findByIdAndRemove(req.params.leaderId, function (err, resp) {  
-
-          if (err) throw err;
-        
-          res.json(resp);
-    });
+.post(function (req, res, next) {
     
-  });
+      
 
-module.exports = leaderRouter;
+      Favorites.find({'postedBy': req.decoded._doc._id})
+
+            .exec(function (err, favorites) {
+
+                var count = 0;
+
+                console.log(favorites);
+    
+                if(favorites.length > 0)
+                {
+                    for(i=0;i< favorites[0].dishes.length; i++)
+                    {
+                       if(favorites[0].dishes[i] == req.body._id)
+                       {
+                          count++;
+                          break;
+                       }
+                    }
+
+                    if(count > 0)
+                    {
+                       console.log('You have already added this dish before !!');
+                       res.json(favorites);
+                    }
+
+                    else
+                    {
+
+                        favorites[0].dishes.push(req.body._id);
+                        
+                        favorites[0].save(function (err, favorite) {
+                        
+                            if (err) throw err;
+                        
+                            console.log('Something is up!');
+                        
+                            res.json(favorite);
+                        });        
+
+                    }
+
+                }
+
+
+                else
+                {
+
+                     Favorites.create({'postedBy': req.decoded._doc._id},function (err,favorite) {
+              
+                        if(err) throw err;
+                        
+                        favorite.dishes.push(req.body._id);
+                        
+                        favorite.save(function (err, favorite) {
+                        
+                            if (err) throw err;
+                        
+                            console.log('Something is up!');
+                        
+                            res.json(favorite);
+                        });
+
+                    });
+                }
+    });
+
+});
+
+
+module.exports = favoritesRouter;

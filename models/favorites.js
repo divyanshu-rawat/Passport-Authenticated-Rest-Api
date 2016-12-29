@@ -2,6 +2,8 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
+
+
 var favoriteScheme = new Schema({
     
     postedBy: {
@@ -9,11 +11,22 @@ var favoriteScheme = new Schema({
         ref: 'User'
     },
 
-    favDish: {
+
+    dishes:[{
+
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'dishes'
-    }
+        ref: 'Dish'
+    }]
 
 }, {
     timestamps: true
 });
+
+
+
+// the schema is useless so far
+// we need to create a model using it
+var favorites = mongoose.model('favorite', favoriteScheme);
+
+// make this available to our Node applications
+module.exports = favorites;
