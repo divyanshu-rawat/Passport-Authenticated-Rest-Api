@@ -29,6 +29,9 @@ favoritesRouter.route('/')
 
              if(err) throw err;
 
+
+
+
              res.json(favorites);
            
           });
@@ -106,7 +109,59 @@ favoritesRouter.route('/')
                 }
     });
 
+})
+
+.delete(function (req, res, next) {
+
+        Favorites.remove({'postedBy': req.decoded._doc._id}, function (err, resp) {
+            if (err) throw err;
+            res.json(resp);
+        })
+
+    });
+
+
+favoritesRouter.route('/:dishId')
+
+
+  .all(Verify.verifyOrdinaryUser)
+
+
+  .delete(function (req, res, next) {
+
+     Favorites.find({'postedBy': req.decoded._doc._id})
+
+            .exec(function (err, favorites)  {
+
+                var favorite = favorites ? favorites[0] : null;
+
+              if (favorite) {
+
+                for (var i = (favorite.dishes.length - 1); i >= 0; i--) {
+                    if (favorite.dishes[i] == req.params.dishId) {
+                        favorite.dishes.remove(req.params.dishId);
+                    }
+                
+                }
+                favorite.save(function (err, favorite) {
+                
+                    if (err) throw err;
+                    console.log('Here you go!');
+                    res.json(favorite);
+                
+                });
+            } else {
+                
+                console.log('No favourites!');
+                res.json(favorite);
+            }
+
+        });
+
+
 });
+
+
 
 
 module.exports = favoritesRouter;
