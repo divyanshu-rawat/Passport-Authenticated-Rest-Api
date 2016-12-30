@@ -1,6 +1,6 @@
 
 #### Description 
-
+* Built a rest Api in Node.js by leveraging below-mentioned Node.js modules.
 * Used JSON web tokens for token-based user authentication
 * Used Passport module together with passport-local and passport-local-mongoose for setting up local authentication within     server.
 * Use Mongoose population to cross-reference users within a comment.
@@ -46,22 +46,7 @@
 
 #### Package.json (dependencies)
   
-  "dependencies": {
-    "body-parser": "~1.15.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
-    "express": "~4.13.4",
-    "jade": "~1.11.0",
-    "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0",
-    "mongoose-currency": "~0.2.0",
-    "mongoose": "~4.7.2",
-    "passport-local": "~1.0.0",
-    "passport": "~0.3.2",
-    "passport-local-mongoose": "~4.0.0",
-    "jsonwebtoken": "~7.2.1",
-    "passport-facebook": "~2.1.1"
-  }
+* For dependencies refer Package.json.
 
 #### For Testing (Postman)
 
