@@ -12,6 +12,8 @@
 
 ##
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/divyanshu-rawat/Passport-Authenticated-Rest-Api.svg)](https://greenkeeper.io/)
+
 #### Description 
 * Built a rest Api in Node.js by leveraging below-mentioned Node.js modules.
 * Used JSON web tokens for token-based user authentication
